@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đặt hàng</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* CSS cho modal tùy chỉnh món */
+        #customizationModal.modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* CSS cho modal đặt hàng */
+        #orderModal.modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            padding: 20px;
+            border: 1px solid #888;
+            border-radius: 8px;
+            width: 80%;
+            max-width: 500px;
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+        }
+
+        .close-btn {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close-btn:hover,
+        .close-btn:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .customization-options, .order-options {
+            margin-top: 20px;
+        }
+        
+        .options-group label {
+            display: block;
+            margin: 5px 0;
+        }
+
+        .order-buttons button {
+            margin: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        
+        .order-options input, .order-options textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>PHỐ ĐI LẠI LÝ NHÂN</h1>
+        <div id="menu" class="menu-container">
+            <!-- Menu items will be rendered here by JavaScript -->
+        </div>
+
+        <h1>Giỏ Hàng</h1>
+        <div id="cart">
+            <!-- Cart items will be rendered here by JavaScript -->
+        </div>
+        <p>Tổng tiền: <span id="totalPrice">0</span> VNĐ</p>
+
+        <div class="order-buttons">
+            <button id="dineInBtn">Uống Tại Chỗ</button>
+            <button id="deliveryBtn">Đặt Giao Hàng</button>
+        </div>
+    </div>
+
+    <!-- Hộp thoại tùy chỉnh (Customization Modal) -->
+    <div id="customizationModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" id="closeCustomizationModal">&times;</span>
+            <h3 id="customizationItemName"></h3>
+            <div class="customization-options">
+                <h4>Đường</h4>
+                <div id="sugarOptions" class="options-group"></div>
+                <h4>Đá</h4>
+                <div id="iceOptions" class="options-group"></div>
+                <h4>Topping</h4>
+                <div id="toppingOptions" class="options-group"></div>
+            </div>
+            <button id="addToCartModalBtn">Thêm vào giỏ</button>
+        </div>
+    </div>
+
+    <!-- Hộp thoại đặt hàng (Order Modal) -->
+    <div id="orderModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" id="closeOrderModal">&times;</span>
+            <h3 id="orderModalTitle"></h3>
+            <div id="orderOptions" class="order-options">
+                <!-- Nội dung sẽ được render bằng JavaScript -->
+            </div>
+            <button id="submitOrderBtn">Gửi Đơn Hàng</button>
+        </div>
+    </div>
+    
+    <script type="module" src="firebase-config.js"></script>
+    <script type="module" src="script-client.js"></script>
+</body>
+</html>

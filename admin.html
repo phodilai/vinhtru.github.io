@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang Quản Trị</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* CSS cho bố cục 2 cột */
+        .two-column-layout {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+        }
+        .two-column-layout .order-section {
+            flex: 1;
+            min-width: 45%;
+        }
+
+        /* CSS cho hiệu ứng chữ nhấp nháy */
+        @keyframes blinker {
+            50% {
+                opacity: 0;
+            }
+        }
+        .blinking-text {
+            animation: blinker 1s linear infinite;
+            color: #e74c3c; /* Màu đỏ nổi bật */
+            font-weight: bold;
+        }
+
+        /* CSS cho modal xác nhận */
+        .confirmation-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .modal-content button {
+            margin: 0 10px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        #confirmYes {
+            background-color: #e74c3c;
+            color: white;
+        }
+
+        #confirmNo {
+            background-color: #3498db;
+            color: white;
+        }
+
+        /* Thêm style cho phần doanh thu */
+        .revenue-item {
+            border-bottom: 1px solid #eee;
+            padding: 10px 0;
+        }
+        .revenue-item:last-child {
+            border-bottom: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Quản Lý Đơn Hàng</h1>
+        
+        <div class="order-section" style="margin-top: 20px;">
+            <h2>Doanh Thu 3 Ngày Gần Nhất</h2>
+            <div id="dailyRevenue">
+                </div>
+        </div>
+        <div class="two-column-layout">
+            <div class="order-section">
+                <h2>Đơn Đang Làm</h2>
+                <div id="pendingOrders">
+                    </div>
+            </div>
+            
+            <div class="order-section">
+                <h2>Đơn Đã Làm</h2>
+                <div id="completedOrders">
+                    </div>
+            </div>
+        </div>
+
+        <div class="order-section">
+            <h2>Lịch Sử Đơn</h2>
+            <div id="archivedOrders">
+                </div>
+        </div>
+
+        <button id="toggleDeletedBtn" style="margin-top: 20px; padding: 10px 20px; font-size: 16px;">
+            Hiện Đơn đã xóa
+        </button>
+        <div class="order-section" id="deletedOrdersSection" style="display: none;">
+            <h2>Đơn đã xóa</h2>
+            <div id="deletedOrders">
+                </div>
+        </div>
+
+    </div>
+
+    <div id="confirmationModal" class="confirmation-modal">
+        <div class="modal-content">
+            <p id="modalMessage"></p>
+            <button id="confirmYes">Có</button>
+            <button id="confirmNo">Không</button>
+        </div>
+    </div>
+    
+    <script type="module" src="script-admin.js"></script>
+</body>
+</html>
